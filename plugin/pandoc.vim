@@ -1,4 +1,6 @@
-if has("python") == 1
+if !has("win32")
+
+    if has("python") == 1
 python<<EOF
 # We register openers with PandocRegisterExecutor. 
 # We take its first argument as the name of a vim ex command, the second
@@ -30,4 +32,5 @@ PandocRegisterExecutor PandocHtml <LocalLeader>html html pandoc -t html -Ss -o %
 PandocRegisterExecutor PandocPdf <LocalLeader>pdf pdf pandoc --latex-engine xelatex PANDOC#P_BIBS -o %:r.pdf %%
 " Generate odt w/ citeproc and open in default odt viewer
 PandocRegisterExecutor PandocOdt <LocalLeader>odt odt pandoc -t odt PANDOC#P_BIBS -o %:r.odt %%
+endif
 endif
